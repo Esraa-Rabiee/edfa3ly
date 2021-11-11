@@ -33,14 +33,11 @@ class CreateInvoiceSumLibrary
      *
      * @return Invoice
      *
-     * @throws ValidationException
+     * @throws ValidationException|Exception
      */
     public function execute(InvoiceItemDto $invoiceItemDto): Invoice
     {
         $itemsTypes = $invoiceItemDto->getItems();
-        if (is_null($itemsTypes)) {
-            throw ValidationException::withMessages(["items can't be null"]);
-        }
 
         $invoiceItemsData = $this->itemRepository->findBy([
             'type' => $itemsTypes
@@ -72,6 +69,12 @@ class CreateInvoiceSumLibrary
 
     }
 
+    /**
+     * @param array $itemsTypes
+     * @param $itemsObjects
+     *
+     * @return array
+     */
     private function prepareItems(array $itemsTypes, $itemsObjects): array
     {
         $items = [];
@@ -88,7 +91,7 @@ class CreateInvoiceSumLibrary
      *
      * @return array
      */
-    private function calculateShippingAndSubtotals(array $items): array
+    protected function calculateShippingAndSubtotals(array $items): array
     {
         $subTotal = 0.0;
         $shipping = 0.0;
