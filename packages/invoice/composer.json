@@ -1,0 +1,22 @@
+{
+    "name": "invoice",
+    "description": "Package provides all functionalities related to edfa3ly invoices",
+    "authors": [
+        {
+            "name": "Edfa3ly",
+            "email": "esraarabie702@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "laravel/framework": "~6"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Invoice\\": "src/"
+        }
+    }
+}
